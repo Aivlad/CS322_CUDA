@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Исходные файлы">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Файлы заголовков">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Файлы ресурсов">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Исходные файлы\Lab1">
+      <UniqueIdentifier>{0c878457-d0bd-4af0-8628-d25d7413dfc0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Lab34">
+      <UniqueIdentifier>{6c395e12-47ae-4946-aabc-986bb4cf58a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\GA">
+      <UniqueIdentifier>{04278479-7f9a-491a-be2f-4dfcf07a9e20}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ConsoleApplication1CudaV2.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="ProcessCPU.cpp">
+      <Filter>Исходные файлы\Lab1</Filter>
+    </ClCompile>
+    <ClCompile Include="Lab34.cpp">
+      <Filter>Исходные файлы\Lab34</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CudaCompile Include="ProcessGPU.cu">
+      <Filter>Исходные файлы\Lab1</Filter>
+    </CudaCompile>
+    <CudaCompile Include="cu.cu">
+      <Filter>Исходные файлы\GA</Filter>
+    </CudaCompile>
+    <CudaCompile Include="ProcessGPULab3.cu">
+      <Filter>Исходные файлы\Lab34</Filter>
+    </CudaCompile>
+    <CudaCompile Include="ProcessGPULab4.cu">
+      <Filter>Исходные файлы\Lab34</Filter>
+    </CudaCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Lab1.h">
+      <Filter>Исходные файлы\Lab1</Filter>
+    </ClInclude>
+    <ClInclude Include="cu.cuh">
+      <Filter>Исходные файлы\GA</Filter>
+    </ClInclude>
+    <ClInclude Include="Lab34.h">
+      <Filter>Исходные файлы\Lab34</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
