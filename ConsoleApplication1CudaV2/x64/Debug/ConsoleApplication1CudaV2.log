@@ -1,4 +1,1 @@
-﻿  Lab34.cpp
-D:\projects\Cpp\ConsoleApplication1CudaV2\ConsoleApplication1CudaV2\Lab34.cpp(14,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
-D:\projects\Cpp\ConsoleApplication1CudaV2\ConsoleApplication1CudaV2\Lab34.cpp(24,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
-  ConsoleApplication1CudaV2.vcxproj -> D:\projects\Cpp\ConsoleApplication1CudaV2\x64\Debug\ConsoleApplication1CudaV2.exe
+﻿  ConsoleApplication1CudaV2.vcxproj -> D:\projects\Cpp\ConsoleApplication1CudaV2\x64\Debug\ConsoleApplication1CudaV2.exe

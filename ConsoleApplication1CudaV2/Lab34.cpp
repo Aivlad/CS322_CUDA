@@ -81,9 +81,23 @@ void printFilleMatrix(int* matrix, int countLine, int countColumn)
 }
 #pragma endregion
 
+void fillIntVecRes(int* vec, int n)
+{
+	for (int i = 0; i < n; i++) {
+		vec[i] = 1;
+	}
+}
+
+int sumElementsInRes(int* vec, int n) {
+	int sum = 0;
+	for (int i = 0; i < n; i++) {
+		sum += vec[i];
+	}
+	return sum;
+}
 
 int LaunchGPULab3(int* matrix, int countLine, int countColumn);
-//int LaunchGPULab4(int* matrix, int countLine, int countColumn);
+int LaunchGPULab4(int* matrix, int countLine, int countColumn);
 
 int Launch()
 {
@@ -110,8 +124,8 @@ int Launch()
 	printf("\nLab3:\n");
 	LaunchGPULab3(source, N, M);
 
-	//printf("\nLab4:\n");
-	//LaunchGPULab4(source, N, M);
+	printf("\nLab4:\n");
+	LaunchGPULab4(source, N, M);
 
 
 	return 0;

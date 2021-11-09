@@ -30,20 +30,9 @@ void fillBoolVecRes(bool* vec, int n)
 	}
 }
 
-void fillIntVecRes(int* vec, int n)
-{
-	for (int i = 0; i < n; i++) {
-		vec[i] = 1;
-	}
-}
+void fillIntVecRes(int* vec, int n);
 
-int sumElementsInRes(int* vec, int n) {
-	int sum = 0;
-	for (int i = 0; i < n; i++) {
-		sum += vec[i];
-	}
-	return sum;
-}
+int sumElementsInRes(int* vec, int n);
 
 int LaunchGPULab3(int* host_matrix, int countLine, int countColumn)
 {
