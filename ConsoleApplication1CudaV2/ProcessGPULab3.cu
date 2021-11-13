@@ -8,18 +8,19 @@ using namespace std;
 
 __global__ void matrix_symmetry_check(int* matrix, const int countLine, const int countColumn, int* vec)
 {
-	int iLine = threadIdx.x;
-	int iVec = blockIdx.x;
-	int iMatrix = blockIdx.x * blockDim.x + threadIdx.x;
+	int iLine = threadIdx.x;																						//1
+	int iVec = blockIdx.x;																							//1
+	int iMatrix = blockIdx.x * blockDim.x + threadIdx.x;															//3
 
-	if (iLine < countColumn / 2 && iMatrix < countLine * countColumn)
+	if (iLine < countColumn / 2 && iMatrix < countLine * countColumn)												//5
 	{
-		//atomicAnd(&vec[iVec], matrix[iMatrix] == matrix[iMatrix + countColumn / 2]);
-		if (vec[iVec] == 1)
+
+		if (vec[iVec] == 1)																							//8
 		{
-			int iSymLine = (iVec + 1) * countColumn - iLine - 1;
-			vec[iVec] = matrix[iMatrix] == matrix[iSymLine] ? atomicAnd(vec + iVec, 1) : atomicAnd(vec + iVec, 0);
+			int iSymLine = (iVec + 1) * countColumn - iLine - 1;													//5
+			vec[iVec] = matrix[iMatrix] == matrix[iSymLine] ? atomicAnd(vec + iVec, 1) : atomicAnd(vec + iVec, 0);	//25	
 		}
+																													//---> 48
 	}
 }
 

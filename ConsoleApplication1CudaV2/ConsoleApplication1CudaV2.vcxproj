@@ -162,6 +162,7 @@
     <CudaCompile Include="cu.cu" />
     <CudaCompile Include="ProcessGPU.cu" />
     <CudaCompile Include="ProcessGPULab3.cu" />
+    <CudaCompile Include="ProcessGPULab3new.cu" />
     <CudaCompile Include="ProcessGPULab4.cu" />
   </ItemGroup>
   <ItemGroup>

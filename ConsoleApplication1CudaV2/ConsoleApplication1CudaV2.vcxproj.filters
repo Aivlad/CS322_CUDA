@@ -47,6 +47,9 @@
     <CudaCompile Include="ProcessGPULab4.cu">
       <Filter>Исходные файлы\Lab34</Filter>
     </CudaCompile>
+    <CudaCompile Include="ProcessGPULab3new.cu">
+      <Filter>Исходные файлы\Lab34</Filter>
+    </CudaCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Lab1.h">

@@ -26,7 +26,7 @@ void generateMatrix(int* matrix, int countLine, int countColumn)
 	{
 		for (int j = 0; j < countColumn / 2; j++)
 		{
-			int num = 1;
+			int num = i;
 			//int num = rand() % 100;
 			matrix[i * countColumn + j] = num;
 			matrix[(i + 1) * countColumn - 1 - j] = num;
@@ -92,11 +92,15 @@ int sumElementsInRes(int* vec, int n) {
 	int sum = 0;
 	for (int i = 0; i < n; i++) {
 		sum += vec[i];
+		if (vec[i] == 0) {
+			printf("------>%i not symmetrical\n" , i);
+		}
 	}
 	return sum;
 }
 
 int LaunchGPULab3(int* matrix, int countLine, int countColumn);
+int LaunchGPULab3new(int* matrix, int countLine, int countColumn);
 int LaunchGPULab4(int* matrix, int countLine, int countColumn);
 
 int Launch()
@@ -112,20 +116,23 @@ int Launch()
 	//generateMatrix(source, N * M);		// заполнение просто случайно (шанс получени€ симметрии очень низок)
 	generateMatrix(source, N, M);		// заполнение симметрично-случайно
 	printf("Generation completed\n\n");
-	source[0] = 2;
-	source[2050] = 2;
-	source[51199999] = 2;
+	source[0 * 1024 + 0] = -1;
+	source[2 * 1024 + 2] = -1;
+	source[49999 * 1024 + 0] = -1;
 
 
 	// NVIDIA GeForce 940MX (type DDR3)
 	// “еоретическа€ пикова€ пропускна€ способность (bandwidth): 16.02 GB/s ((c) ¬икипеди€)
 	//printf("NVIDIA GeForce 940MX (type DDR3) has theoretical peak throughput (bandwidth): 16.02 GB/s\n");
 
-	printf("\nLab3:\n");
+	printf("\nLab3 with atomic:\n");
 	LaunchGPULab3(source, N, M);
 
-	printf("\nLab4:\n");
-	LaunchGPULab4(source, N, M);
+	printf("\n\nLab3 without atomic:\n");
+	LaunchGPULab3new(source, N, M);
+
+	//printf("\nLab4:\n");
+	//LaunchGPULab4(source, N, M);
 
 
 	return 0;

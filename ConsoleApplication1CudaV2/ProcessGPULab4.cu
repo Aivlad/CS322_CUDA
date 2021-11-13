@@ -13,24 +13,51 @@ using namespace std;
 
 __global__ void matrix_symmetry_check_shared(int* matrix, const int countLine, const int countColumn, int* vec)
 {
-	__shared__ int cache[1024];
-	int iCache = threadIdx.x;
-	int iVec = blockIdx.x;
-	int iMatrix = blockIdx.x * blockDim.x + threadIdx.x;
-	cache[threadIdx.x] = matrix[iMatrix];
-	__syncthreads();
+	_/*_shared__ int cache[256];
 
-	if (iCache < countColumn / 2)
-	{
-		if (vec[iVec] == 1)
-		{
-			int iSymLine = 1024 - iCache - 1;
-			vec[iVec] = cache[iCache] == cache[iSymLine] ? atomicAnd(vec + iVec, 1) : atomicAnd(vec + iVec, 0);
-		}
-	}
+	int iLine = blockIdx.x * blockDim.x + threadIdx.x;																	
+	int iFirstElementLine = iLine * 1024;																					
+	int iLastElementLine = iFirstElementLine + 511;	*/																		
+
+
+	//__shared__ int cache[1024];
+	//int iCache = threadIdx.x;
+	//int iVec = blockIdx.x;
+	//int iMatrix = blockIdx.x * blockDim.x + threadIdx.x;
+	//cache[threadIdx.x] = matrix[iMatrix];
+	//__syncthreads();
+
+	//if (iCache < countColumn / 2)
+	//{
+	//	if (vec[iVec] == 1)
+	//	{
+	//		int iSymLine = 1024 - iCache - 1;
+	//		vec[iVec] = cache[iCache] == cache[iSymLine] ? atomicAnd(vec + iVec, 1) : atomicAnd(vec + iVec, 0);
+	//	}
+	//}
 
 
 }
+
+/*
+	__global__ void matrix_symmetry_check_no_atomic(int* matrix, const int countLine, const int countColumn, int* vec)
+{
+	int iLine = blockIdx.x * blockDim.x + threadIdx.x;																		//3
+	int iFirstElementLine = iLine * 1024;																					//2
+	int iLastElementLine = iFirstElementLine + 511;																			//2
+	if (iFirstElementLine < countLine * countColumn && iLastElementLine < countLine * countColumn && iLine < countLine)		//7
+	{
+		for (int i = 0; i < 512; i++)																						//3 в цикле + 1 вне
+		{
+			if (vec[iLine] == 1)																							//8
+			{
+				vec[iLine] = matrix[iFirstElementLine + i] == matrix[iLastElementLine - i] ? 1 : 0;							//25
+			}
+		}																													//36 * 512 + 1 = 18433
+	}
+}
+	
+*/
 
 void fillIntVecRes(int* vec, int n);
 
@@ -62,7 +89,7 @@ int LaunchGPULab4(int* host_matrix, int countLine, int countColumn)
 	CHECK(cudaMemcpy(dev_matrix, host_matrix, size_matrix, cudaMemcpyHostToDevice));								// копируем значение на устройство
 	CHECK(cudaMemcpy(dev_is_symmetrical_lines, host_is_symmetrical_lines, size_vector, cudaMemcpyHostToDevice));	// копируем значение на устройство
 
-	int countThreads = countColumn;																// количество нитей для каждого блока (!!! кол-во нитей = количеству столбцов матрицы)
+	int countThreads = 256;																// количество нитей для каждого блока (!!! кол-во нитей = количеству столбцов матрицы)
 	int countBlocks = (countLine * countColumn + countThreads - 1) / countThreads;				// количество параллельных блоков
 	printf("Blocks: %i\t Threads: %i\n", countBlocks, countThreads);
 
