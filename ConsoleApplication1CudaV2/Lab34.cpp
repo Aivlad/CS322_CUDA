@@ -92,9 +92,9 @@ int sumElementsInRes(int* vec, int n) {
 	int sum = 0;
 	for (int i = 0; i < n; i++) {
 		sum += vec[i];
-		if (vec[i] == 0) {
+		/*if (vec[i] == 0) {
 			printf("------>%i not symmetrical\n" , i);
-		}
+		}*/
 	}
 	return sum;
 }
@@ -116,10 +116,14 @@ int Launch()
 	//generateMatrix(source, N * M);		// заполнение просто случайно (шанс получени€ симметрии очень низок)
 	generateMatrix(source, N, M);		// заполнение симметрично-случайно
 	printf("Generation completed\n\n");
-	source[0 * 1024 + 0] = -1;
-	source[2 * 1024 + 2] = -1;
-	source[49999 * 1024 + 0] = -1;
-
+	int s = 0;
+	for (int i = 0; i < N; i++) {
+		if (rand() % 2 == 0) {
+			source[i * 1024 + rand() % M] = -1;
+			s++;
+		}
+	}
+	std::cout << "True sym lines count = " << N-s << "\n";
 
 	// NVIDIA GeForce 940MX (type DDR3)
 	// “еоретическа€ пикова€ пропускна€ способность (bandwidth): 16.02 GB/s ((c) ¬икипеди€)

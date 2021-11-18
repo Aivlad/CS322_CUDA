@@ -13,7 +13,7 @@ using namespace std;
 
 __global__ void matrix_symmetry_check_shared(int* matrix, const int countLine, const int countColumn, int* vec)
 {
-	_/*_shared__ int cache[256];
+	/*__shared__ int cache[256];
 
 	int iLine = blockIdx.x * blockDim.x + threadIdx.x;																	
 	int iFirstElementLine = iLine * 1024;																					

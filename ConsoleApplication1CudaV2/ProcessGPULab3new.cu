@@ -9,19 +9,22 @@ using namespace std;
 
 __global__ void matrix_symmetry_check_no_atomic(int* matrix, const int countLine, const int countColumn, int* vec)
 {
-	int iLine = blockIdx.x * blockDim.x + threadIdx.x;																		//3
-	int iFirstElementLine = iLine * 1024;																					//2
-	int iLastElementLine = iFirstElementLine + 511;																			//2
-	if (iFirstElementLine < countLine * countColumn && iLastElementLine < countLine * countColumn && iLine < countLine)		//7
+	int iLine = blockIdx.x * blockDim.x + threadIdx.x;																		
+	int iFirstElementLine = iLine * countColumn;																					
+	int iLastElementLine = iFirstElementLine + countColumn - 1;																			
+	int result = 1;
+	if (iFirstElementLine < countLine * countColumn && iLastElementLine < countLine * countColumn && iLine < countLine)		
 	{
-		for (int i = 0; i < 512; i++)																						//3 в цикле + 1 вне
+		for (int i = 0; i < countColumn / 2; i++)																			
 		{
-			if (vec[iLine] == 1)																							//8
+			if (result == 1)																							
 			{
-				vec[iLine] = matrix[iFirstElementLine + i] == matrix[iLastElementLine - i] ? 1 : 0;							//25
+				result = matrix[iFirstElementLine + i] == matrix[iLastElementLine - i] ? 1 : 0;							
 			}
-		}																													//36 * 512 + 1 = 18433
+		}																													
+		vec[iLine] = result;
 	}
+
 }
 
 
